@@ -7,17 +7,12 @@ WORKDIR /app
 # Update the package manager and install necessary dependencies
 RUN dnf -y update && \
     dnf -y install python3 python3-pip && \
-    dnf -y install gcc-c++ # To ensure scipy and scikit-learn compile properly
+    dnf -y install gcc-c++ && \
+    dnf -y install mesa-libGL mesa-libGLU
+
 
 # Install Python packages
-RUN pip3 install \
-    numpy \
-    btrack \
-    scikit-image \
-    scipy \
-    pandas \
-    scikit-learn \
-    opencv-python
+RUN pip3 install numpy btrack scikit-image scipy pandas scikit-learn opencv-python
 
 # Copy your application files
 COPY . /app
